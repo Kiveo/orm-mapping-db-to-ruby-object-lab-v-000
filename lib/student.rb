@@ -22,8 +22,8 @@ class Student
     SQL
     # return a new instance of the Student class
     DB[:conn].execute(sql, name).collect do |row|
-      self.new_from_db(row)
-    end 
+      self.new_from_db(row).flatten
+    end
   end
 
   def save
