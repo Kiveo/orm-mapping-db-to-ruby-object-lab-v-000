@@ -41,7 +41,7 @@ class Student
     sql = <<-SQL
       SELECT * FROM students WHERE grade < 12
     SQL
-    DB[:conn].execute(sql)
+    DB[:conn].execute(sql).collect {|row| self.new_from_db(row)}
   end
 
   def save
