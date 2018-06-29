@@ -20,8 +20,10 @@ class Student
     found_student = <<-SQL
       SELECT * FROM students WHERE name = ? LIMIT 1
     SQL
-    DB[:conn].execute(sql, name)
     # return a new instance of the Student class
+    DB[:conn].execute(sql, name).collect do |row|
+      self.new_from_db(row)
+    end 
   end
 
   def save
