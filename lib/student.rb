@@ -22,7 +22,7 @@ class Student
     SQL
     # return a new instance of the Student class
     DB[:conn].execute(sql, name).collect do |row|
-      self.new_from_db(row).first 
+      self.new_from_db(row).first
     end
   end
 
